@@ -1,0 +1,18 @@
+<div class="container">
+<div class="table">
+    <table *ngIf="fixture">
+        <tr>
+        </tr>
+        <tr *ngFor="let item of fixture">
+            <td><img height="30" [src]="item.teams.home.logo"/></td>
+            <td>{{item.teams.home.name}}</td>
+            <td>{{item.goals.home}}</td>
+            <td>-</td>
+            <td>{{item.goals.away}}</td>
+            <td>{{item.teams.away.name}}</td>
+            <td><img height="30" [src]="item.teams.away.logo"/></td>
+        </tr>
+    </table>
+    </div>
+    <button type="button" class="btn btn-primary" (click)="onGoBack()">Back</button>
+</div>

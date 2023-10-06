@@ -1,0 +1,20 @@
+<div class="table">
+    <table>
+        <tr>
+            <th *ngFor="let header of headers">
+                {{header}}
+            </th>
+        </tr>
+        <tr *ngFor="let row of standingArr" (click)="getFixtures(row)">
+          <td>{{row.rank}}</td> 
+          <td><img height="30" [src]="row.team.logo"/></td>
+          <td>{{row.team.name}}</td>
+          <td>{{row.all.played}}</td> 
+          <td>{{row.all.win}}</td>
+          <td>{{row.all.lose}}</td>
+          <td>{{row.all.draw}}</td>
+          <td>{{row.goalsDiff}}</td>
+          <td>{{row.points}}</td>
+        </tr>
+    </table>
+    </div>

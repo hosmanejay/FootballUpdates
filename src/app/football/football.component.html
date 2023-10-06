@@ -1,0 +1,6 @@
+<div class="container">
+    <nav *ngFor="let countries of leagueCountries">
+       <button type="button" [ngClass]="currentCountry?.name == countries.name ? 'selected' : ''" id="{{countries+'select'}}" (click)="onSelectCountry(countries)">{{countries.name}}</button>
+    </nav>
+</div>
+<app-result-grid *ngIf="selectedCountry" [country]="selectedCountry"></app-result-grid>
