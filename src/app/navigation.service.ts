@@ -22,10 +22,6 @@ export class NavigationService {
     });
   }
 
-  public getHistory(): string[] {
-    return this.history;
-  }
-
   public goback(): void {
     this.history.pop();
 
@@ -36,12 +32,5 @@ export class NavigationService {
       console.log('navigating to /');
       this.router.navigate(['/home'], { relativeTo: this.route });
     }
-  }
-
-  public getPreviousUrl(): string {
-    if (this.history.length > 0) {
-      return this.history[this.history.length - 2];
-    }
-    return '';
   }
 }

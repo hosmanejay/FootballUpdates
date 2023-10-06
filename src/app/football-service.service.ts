@@ -7,11 +7,10 @@ import { GetLeague, Standings, allFixtures } from './Models/Models';
   providedIn: 'root'
 })
 export class FootballServiceService {
-  apiUrl:String = 'https://v3.football.api-sports.io/';
-  apiKey:string = 'c2c5c5930008d74179eda86ffc42f2f1';
+  apiUrl:string = 'https://v3.football.api-sports.io/';
   headers =  {
     'x-rapidapi-host': 'v3.football.api-sports.io',
-    'x-rapidapi-key': 'c2c5c5930008d74179eda86ffc42f2f1',
+    'x-rapidapi-key': 'e32578c8860916c44ca8c5c16071da7e',
   }
   constructor(private http : HttpClient) { }
 

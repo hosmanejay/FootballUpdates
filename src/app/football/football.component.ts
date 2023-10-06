@@ -18,9 +18,9 @@ export class FootballComponent implements OnInit {
     this.navigate.startSaveHistory();
   }
   ngOnInit(): void {
-    let selectd = window.sessionStorage.getItem('selected');
-    let league = window.sessionStorage.getItem('league');
-    let standing = window.sessionStorage.getItem('standing');
+    let selectd = window.localStorage.getItem('selected');
+    let league = window.localStorage.getItem('league');
+    let standing = window.localStorage.getItem('standing');
     if(selectd){
       if(standing){
         this.selectedCountry = JSON.parse(standing);
@@ -64,14 +64,31 @@ export class FootballComponent implements OnInit {
 
   onSelectCountry(selectedCountry: countryDetails): void {
     this.currentCountry = selectedCountry;
-    window.sessionStorage.setItem('selected', JSON.stringify(selectedCountry));
+    window.localStorage.setItem('selected', JSON.stringify(selectedCountry));
       this.service.getCurrentLeagueId(selectedCountry.leagueName,selectedCountry.name,true).subscribe((data)=> {
-        window.sessionStorage.setItem('league', JSON.stringify(data));
-        if(data){
+        if(data.response.length > 0){
+          window.localStorage.setItem('league', JSON.stringify(data));
           this.service.getCurrentStandings(data?.response[0].seasons[0].year.toString(),data.response[0].league.id).subscribe((standingData : Standings)=>{
+            if(standingData.response.length > 0){
             this.selectedCountry = standingData;
-            window.sessionStorage.setItem('standing', JSON.stringify(standingData));
+            window.localStorage.setItem('standing', JSON.stringify(standingData));
+            window.localStorage.setItem(selectedCountry.name, JSON.stringify(standingData));
+            }else{
+              let standing = window.localStorage.getItem(selectedCountry.name); 
+              if(standing){
+                this.selectedCountry = JSON.parse(standing);
+              }else{
+                alert('Please try after one minute(Exceeded 10 REQ per minute)')
+              }
+            }
           })
+        }else {
+          let standing = window.localStorage.getItem(selectedCountry.name); 
+              if(standing){
+                this.selectedCountry = JSON.parse(standing);
+              }else{
+                alert('Please try after one minute(Exceeded 10 REQ per minute)')
+              }
         }
       })
   }

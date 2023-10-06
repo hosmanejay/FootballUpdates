@@ -1,7 +1,6 @@
 export interface Standings {
     get: string
     parameters: Parameters
-    errors: any[]
     results: number
     paging: Paging
     response: Response[]
@@ -99,7 +98,6 @@ export interface Standings {
   export interface allFixtures {
     get?: string
     parameters?: Parameters
-    errors?: any[]
     results?: number
     paging?: Paging
     response?: Response[]
@@ -204,19 +202,18 @@ export interface Standings {
   }
   
   export interface Extratime {
-    home: any
-    away: any
+    home: number
+    away: number
   }
   
   export interface Penalty {
-    home: any
-    away: any
+    home: number
+    away: number
   }
 
   export interface GetLeague {
     get: string
     parameters: Parameters
-    errors: any[]
     results: number
     paging: Paging
     response: Response[]

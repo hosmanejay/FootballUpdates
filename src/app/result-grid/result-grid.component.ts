@@ -26,7 +26,13 @@ export class ResultGridComponent {
     let id = this.country?.response[0].league;
     this.service.getallFixtures(id?.id??0,id?.season.toString()??'',rowData.team.id).subscribe((data:allFixtures)=>{
       console.log(data);
-      this.router.navigate(['/fixture'],{ state: { data:data }});
+      console.log(data.response?.length);
+      if(data.response?.length??0 > 0 ){
+        this.router.navigate(['/fixture'],{ state: { data:data }});
+      }else {
+        alert('Exceeded 100 req per day or 10 req per minute');
+      }
+      
     })
 
   }
